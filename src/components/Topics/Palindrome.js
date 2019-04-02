@@ -1,9 +1,57 @@
 import React, {Component} from 'react';
 
 class Palindrome extends Component{
+    constructor(){
+        super()
+        this.state = {
+            userInput: '',
+            palindrome: ''
+        }
+
+        this.handleInput = this.handleInput.bind(this);
+        this.isPalindrome = this.isPalindrome.bind(this);
+    }
+
+    handleInput(event){
+        this.setState({
+            userInput: event.target.value
+        })
+    }
+
+    isPalindrome(){
+        let str = this.state.userInput;
+        let forwards = [];
+        let backwards = [];
+        for (let i=0; i < str.length; i++){
+            forwards.push(str[i]);
+            backwards.shift(str[i]);
+        }
+        if (forwards === backwards){
+            this.setState({
+                palindrome: 'true'
+            })
+        }
+        else {
+            this.setState({
+                palindrome: 'false'
+            })
+
+        }
+    }
+
     render(){
         return (
-            <p> Palindrome </p>
+            <div className="puzzleBox filterStringPB">
+                <h4></h4>
+                <input
+                className="inputLine"
+                onChange={this.handleInput}></input>
+                <button
+                className="confirmationButton"
+                onClick={this.isPalindrome}> CHECK </button>
+                <span
+                className="resultsBox">{this.state.palindrome}</span>
+            </div>
         )
     }
 }
