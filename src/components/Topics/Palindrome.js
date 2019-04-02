@@ -24,9 +24,9 @@ class Palindrome extends Component{
         let backwards = [];
         for (let i=0; i < str.length; i++){
             forwards.push(str[i]);
-            backwards.shift(str[i]);
+            backwards.unshift(str[i]);
         }
-        if (forwards === backwards){
+        if (forwards.join() === backwards.join()){
             this.setState({
                 palindrome: 'true'
             })
@@ -42,7 +42,7 @@ class Palindrome extends Component{
     render(){
         return (
             <div className="puzzleBox filterStringPB">
-                <h4></h4>
+                <h4>Palindrome</h4>
                 <input
                 className="inputLine"
                 onChange={this.handleInput}></input>
